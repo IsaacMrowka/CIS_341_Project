@@ -1,0 +1,7 @@
+[Unit]
+Description=Audit File Cleanup
+
+[Service]
+Type=oneshot
+User=auditmanager
+ExecStart=/user/bin/python3 /course_project/cleanup.py
