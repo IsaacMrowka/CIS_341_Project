@@ -4,4 +4,5 @@ Description=Audit File Cleanup
 [Service]
 Type=oneshot
 User=auditmanager
-ExecStart=/user/bin/python3 /course_project/cleanup.py
+WorkingDirectory=/home/aaron/CIS_341_Project
+ExecStart=/usr/bin/python3 /home/aaron/CIS_341_Project/cleanup.py
