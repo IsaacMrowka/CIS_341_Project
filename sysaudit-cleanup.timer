@@ -1,9 +1,9 @@
 [Unit]
-Description=Schedule Audit Cleanup Every 3 Days
+Description=Schedule Audit Cleanup
 
 [Timer]
-OnBootSec=3d
-OnUnitActiveSec=3d
+OnCalendar=*-*-01/3 00:00:00
+Persistent=true
 Unit=sysaudit-cleanup.service
 
 [Install]
