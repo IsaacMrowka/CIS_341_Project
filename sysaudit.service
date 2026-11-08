@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 User=auditmanager
 WorkingDirectory=
-ExecStart=/usr/bin/python3 -u /course_project/main.py
+ExecStart=/usr/bin/python3 -u 
 Restart=on-failure
 RestartSec=5
 
