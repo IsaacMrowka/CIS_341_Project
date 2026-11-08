@@ -44,11 +44,29 @@ COMMAND LINE OPTIONS:
 
 EXAMPLE COMMANDS:
 
-    python3 main.py
-    python3 main.py -h
-    python3 main.py --help
-    python3 main.py max_limit=150
-    python3 main.py delegate=student1
+    Display the help menu:
+        python3 main.py
+        python3 main.py -h
+        python3 main.py --help
+
+    Run a monitoring scan with a 150 MiB limit:
+        sudo -u auditmanager python3 main.py max_limit=150
+
+    Run a monitoring scan with a 100 MiB limit:
+        sudo -u auditmanager python3 main.py max_limit=100
+
+    Delegate access to an existing user:
+        sudo -u auditmanager python3 main.py delegate=student1
+
+    Run the cleanup script manually:
+        sudo -u auditmanager python3 cleanup.py
+
+IMPORTANT:
+    Monitoring commands must run as auditmanager.
+    Running them as another user will return exit code 2.
+
+    The systemd services already run as auditmanager,
+    so sudo -u auditmanager is not needed for systemctl.
 
 SAMPLE LOG OUTPUT (sysaudit_daemon.log):
 
