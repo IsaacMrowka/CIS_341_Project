@@ -173,25 +173,25 @@ Note: When using systemctl, you do not need to specify auditmanager. The systemd
 
 **Testing the Project**
 
-1. Check the Monitoring Service
+**1. Check the Monitoring Service**
 
 sudo systemctl status sysaudit.service
 
 The service should show active (running).
 
-2. Check the Cleanup Timer
+**2. Check the Cleanup Timer**
 
 sudo systemctl status sysaudit-cleanup.timer
 
 The timer should show active (waiting).
 
-3. Test the Help Menu
+**3. Test the Help Menu**
 
 python3 main.py --help
 
 This should display the program's usage instructions, available arguments, configuration settings, sample logs, and error codes.
 
-4. Test an Invalid Argument
+**4. Test an Invalid Argument**
 
 python3 main.py --wrong
 
@@ -199,7 +199,7 @@ echo $?
 
 The program should display an invalid argument error and return exit code 8.
 
-5. Test the Cleanup Service
+**5. Test the Cleanup Service**
 
 sudo systemctl start sysaudit-cleanup.service
 
@@ -207,7 +207,7 @@ sudo systemctl status sysaudit-cleanup.service
 
 The service should complete successfully. It may show inactive (dead) afterward because it only runs when needed.
 
-6. View the Audit Logs
+**6. View the Audit Logs**
 
 sudo tail -n 20 /course_project/audit/sysaudit_daemon.log
 
@@ -226,5 +226,4 @@ This displays recent audit activity, including monitoring scans and archive info
 •	Make sure the project files are accessible to auditmanager.
 
 •	The program was developed and tested on Kali Linux. Other Linux systems may require small changes during setup.
-
 
