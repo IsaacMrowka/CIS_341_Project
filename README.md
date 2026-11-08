@@ -26,7 +26,7 @@ Clone the GitHub repository in your Home folder and open the project folder.
 
 1) cd ~
 
-2) git clone YOUR_GITHUB_REPOSITORY_URL
+2) git clone https://github.com/IsaacMrowka/CIS_341_Project
 
 3) cd CIS_341_Project
 
