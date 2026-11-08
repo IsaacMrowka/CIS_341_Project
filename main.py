@@ -50,26 +50,37 @@ EXAMPLE COMMANDS:
     python3 main.py max_limit=150
     python3 main.py delegate=student1
 
-SAMPLE LOG OUTPUT:
+SAMPLE LOG OUTPUT (sysaudit_daemon.log):
 
-    2026-11-06 10:00:00 [INFO] Audit scan started
-    2026-11-06 10:00:01 [INFO] Archive cleanup completed. Removed 0 old archive(s)
-    2026-11-06 10:00:02 [INFO] Audit scan completed
+    2026-11-08 14:47:50 [INFO] Identity verified: auditmanager
+    2026-11-08 14:47:50 [INFO] Audit scan started
+    2026-11-08 14:47:50 [INFO] Archive cleanup completed. Removed 0 old archive(s)
+    2026-11-08 14:47:50 [INFO] Archive summary - total: 1, largest: backup_20261108_141902_630922.tar.gz, size: 255 bytes, modified: 2026-11-08 14:19:02
+    2026-11-08 14:47:50 [INFO] Audit scan completed
 
-SAMPLE ARCHIVE SUMMARY:
+SAMPLE MONITORING OUTPUT:
 
-    Total audit archives: 3
-    Largest archive: audit_2026_11_08.tar.gz (2048 bytes)
-    Last modified: 2026-11-08 09:30:00
+    Starting audit scan...
+    Current Size: 0.01 MiB (Configured Envelope Limit: 100.0 MiB)
+    Total audit archives: 1
+    Largest archive: backup_20261108_141902_630922.tar.gz (255 bytes)
+    Last modified: 2026-11-08 14:19:02
+    Waiting 60 seconds...
 
-SAMPLE STORAGE OUTPUT:
+SAMPLE ARCHIVE METRICS:
 
-    Current Size: 45.00 MiB (Configured Envelope Limit: 100.0 MiB)
+    Total audit archives: 1
+    Largest archive: backup_20261108_141902_630922.tar.gz (255 bytes)
+    Last modified: 2026-11-08 14:19:02
 
-SAMPLE WARNING:
+SAMPLE STORAGE METRICS:
 
-    2026-11-06 10:00:03 [WARN] HIGH-PRIORITY:
-    Envelope limit breached! Size: 105.00 MiB
+    Current Size: 0.02 MiB (Configured Envelope Limit: 100.0 MiB)
+
+SAMPLE WARNING (from storage limit testing):
+
+    2026-11-06 20:49:36 [WARNING] HIGH-PRIORITY:
+    Envelope limit breached! Size: 173.79 MiB
 
 CONFIGURATION FILE: sysaudit.cfg
 
