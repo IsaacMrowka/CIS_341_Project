@@ -3,10 +3,12 @@ Description=System Health Monitor and Security Audit Daemon
 After=network.target
 
 [Service]
-Type=oneshot
+Type=simple
 User=auditmanager
 WorkingDirectory=/home/aaron/CIS_341_Project
-ExecStart=/usr/bin/python3 /home/aaron/CIS_341_Project/system_security_daemon.py
+ExecStart=/usr/bin/python3 -u /home/aaron/CIS_341_Project/daemon_runner.py
+Restart=on-failure
+RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
