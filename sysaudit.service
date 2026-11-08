@@ -1,0 +1,14 @@
+[UNIT]
+Description=System Health Monitor and Security Auditing Daemon
+After=network.target
+
+[Service]
+Type=simple
+User=auditmanager
+WorkingDirectory=
+ExecStart=/usr/bin/python3 -u /course_project/main.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
