@@ -1,13 +1,10 @@
-# Test A - Configuration File
+# Configuration File
 import system_security_daemon as daemon
-
 settings = daemon.load_config("sysaudit.cfg")
-
 if settings is not None:
     print("PASS: Configuration loaded")
 else:
     print("FAIL: Configuration not loaded")
-
 for limit in [0, 1, 100]:
     config = open("sysaudit.cfg").read()
     open("test.cfg", "w").write(config.replace("100.0", str(limit)))
@@ -16,14 +13,10 @@ for limit in [0, 1, 100]:
 
 
 # Test B Missing Configuration File
-
 original = daemon.load_config
 daemon.load_config = lambda file: None
-
 result = daemon.main()
-
 daemon.load_config = original
-
 if result == 3:
     print("PASS: Missing configuration detected")
 else:
@@ -31,26 +24,23 @@ else:
 
 
 #Invalid Directory
-
 original = daemon.load_config
 settings = original("sysaudit.cfg")
 settings["audit_directory"] = "/invalid_directory"
-
 daemon.load_config = lambda file: settings
 result = daemon.main()
 daemon.load_config = original
+print("PASS: Invalid directory detected" if result == 4 else "FAIL: invalid directory not detected")
 
-print("PASS: Test C" if result == 4 else "FAIL: Test C")
 
-
-# Test D - Malformed Configuration
+#Malformed Configuration
 config = open("sysaudit.cfg").read()
 open("bad.cfg", "w").write(config.replace("100.0", "wrong"))
 settings = daemon.load_config("bad.cfg")
 if settings is None:
-    print("PASS: Test D")
+    print("PASS: malformed config detected")
 else:
-    print("FAIL: Test D")
+    print("FAIL: Malformed config not detected")
 
 
 #Storage Limit
@@ -61,12 +51,12 @@ sys.argv = ["test", "max_limit=-1"]
 result = daemon.main()
 daemon.get_effective_user = original
 sys.argv = ["test"]
-print("PASS: Test E" if result == 0 else "FAIL: Test E")
+print("PASS: storage limit warning" if result == 0 else "FAIL: storage limit warning")
 
 
 #Unauthorized User
 result = daemon.check_identity("auditmanager", "/tmp/test_f.log")
 if result == 2:
-    print("PASS: Test F")
+    print("Unauthorized user Block")
 else:
-    print("FAIL: Test F")
+    print("FAIL: Unauthorized user not blocked")
