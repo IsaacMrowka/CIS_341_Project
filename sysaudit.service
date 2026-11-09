@@ -5,8 +5,8 @@ After=network.target
 [Service]
 Type=simple
 User=auditmanager
-WorkingDirectory=/home/aaron/CIS_341_Project
-ExecStart=/usr/bin/python3 -u /home/aaron/CIS_341_Project/daemon_runner.py
+WorkingDirectory= "INSTER PWD HERE"
+ExecStart=/usr/bin/python3 -u "INSTER PWD HERE"/daemon_runner.py
 Restart=on-failure
 RestartSec=5
 
