@@ -1,0 +1,10 @@
+Akash - parts 1,2,3
+        presentation
+Aaron - parts 4,5,6
+        code integration
+Isaac - parts 7,8,9
+        git and editor
+Jaspreet - parts 10,11,12
+        testing
+Lalu - parts 13,14
+        testing
