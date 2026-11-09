@@ -215,6 +215,18 @@ The service should complete successfully. It may show inactive (dead) afterward 
 
 **6. View the Audit Logs**
 
+**7. Automated Functionality Tests**
+
+Run automated tests using:
+python3 Tests_question13.py
+
+The tests check configuration loading, boundary values, missing configuration files, invalid directories, malformed configurations, storage limit warnings, and unauthorized user access.
+
+The program should display PASS messages when the tests succeed. Some ERROR messages are expected because the tests intentionally check invalid conditions.
+
+
+
+
 sudo tail -n 20 /course_project/audit/sysaudit_daemon.log
 
 This displays recent audit activity, including monitoring scans and archive information.
