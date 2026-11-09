@@ -62,3 +62,11 @@ result = daemon.main()
 daemon.get_effective_user = original
 sys.argv = ["test"]
 print("PASS: Test E" if result == 0 else "FAIL: Test E")
+
+
+#Unauthorized User
+result = daemon.check_identity("auditmanager", "/tmp/test_f.log")
+if result == 2:
+    print("PASS: Test F")
+else:
+    print("FAIL: Test F")
