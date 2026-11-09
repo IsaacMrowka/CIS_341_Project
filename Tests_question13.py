@@ -51,3 +51,14 @@ if settings is None:
     print("PASS: Test D")
 else:
     print("FAIL: Test D")
+
+
+#Storage Limit
+import sys
+original = daemon.get_effective_user
+daemon.get_effective_user = lambda: "auditmanager"
+sys.argv = ["test", "max_limit=-1"]
+result = daemon.main()
+daemon.get_effective_user = original
+sys.argv = ["test"]
+print("PASS: Test E" if result == 0 else "FAIL: Test E")
