@@ -11,3 +11,13 @@ if settings is not None and settings["max_safety_limit_mib"] == 100.0:
     print("PASS: Configuration loaded successfully")
 else:
     print("FAIL: Configuration did not load correctly")
+
+
+# Test B - Missing Configuration File
+
+settings = daemon.load_config("missing.cfg")
+
+if settings is None:
+    print("PASS: Missing configuration file detected")
+else:
+    print("FAIL: Missing configuration file not detected")
