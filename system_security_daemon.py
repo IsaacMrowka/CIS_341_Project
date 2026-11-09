@@ -106,11 +106,17 @@ def audit_summary_log(audit_dir, log_path):
 
     for archive in archives:
         file_path = os.path.join(audit_dir, archive)
-        file_size = os.path.getsize(file_path)
+        try:
+            file_size = os.path.getsize(file_path)
+            if file_size > max_size:
+                max_size = file_size
+                largest_file = archive
+        except OSError:
+            continue
 
-        if file_size > max_size:
-            max_size = file_size
-            largest_file = archive
+    if not largest_file:
+        print("No valid audit archives found to summarize.")
+        return
 
     largest_path = os.path.join(audit_dir, largest_file)
     modification_time = os.path.getmtime(largest_path)
