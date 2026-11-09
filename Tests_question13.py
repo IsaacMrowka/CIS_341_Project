@@ -28,3 +28,16 @@ if result == 3:
     print("PASS: Missing configuration detected")
 else:
     print("FAIL: Missing configuration not detected")
+
+
+#Invalid Directory
+
+original = daemon.load_config
+settings = original("sysaudit.cfg")
+settings["audit_directory"] = "/invalid_directory"
+
+daemon.load_config = lambda file: settings
+result = daemon.main()
+daemon.load_config = original
+
+print("PASS: Test C" if result == 4 else "FAIL: Test C")
