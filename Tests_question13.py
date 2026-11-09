@@ -12,7 +12,7 @@ for limit in [0, 1, 100]:
     print("PASS" if settings and settings["max_safety_limit_mib"] == limit else "FAIL", limit)
 
 
-# Test B Missing Configuration File
+# Missing Configuration File
 original = daemon.load_config
 daemon.load_config = lambda file: None
 result = daemon.main()
@@ -47,7 +47,7 @@ else:
 import sys
 original = daemon.get_effective_user
 daemon.get_effective_user = lambda: "auditmanager"
-sys.argv = ["test", "max_limit=-1"]
+sys.argv = ["test", "max_limit=0.0000001"]
 result = daemon.main()
 daemon.get_effective_user = original
 sys.argv = ["test"]
@@ -57,6 +57,6 @@ print("PASS: storage limit warning" if result == 0 else "FAIL: storage limit war
 #Unauthorized User
 result = daemon.check_identity("auditmanager", "/tmp/test_f.log")
 if result == 2:
-    print("Unauthorized user Block")
+    print("Pass: Unauthorized user Blocked")
 else:
     print("FAIL: Unauthorized user not blocked")
