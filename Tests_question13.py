@@ -15,11 +15,16 @@ for limit in [0, 1, 100]:
     print("PASS" if settings and settings["max_safety_limit_mib"] == limit else "FAIL", limit)
 
 
-# Test B - Missing Configuration File
+# Test B Missing Configuration File
 
-settings = daemon.load_config("missing.cfg")
+original = daemon.load_config
+daemon.load_config = lambda file: None
 
-if settings is None:
-    print("PASS: Missing configuration file detected")
+result = daemon.main()
+
+daemon.load_config = original
+
+if result == 3:
+    print("PASS: Missing configuration detected")
 else:
-    print("FAIL: Missing configuration file not detected")
+    print("FAIL: Missing configuration not detected")
