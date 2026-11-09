@@ -16,6 +16,8 @@ Before starting, make sure you have:
 
 4) Administrator (sudo) access
 
+5) acl package 
+
 **Setup Instructions:**
 
 These steps explain how to set up the project on another Linux computer.
@@ -38,7 +40,7 @@ Run these commands to create them:
 
 1) sudo groupadd -f auditteam
 
-2) id auditmanager || sudo useradd -m -g auditteam auditmanager
+2) getent group auditteam >/dev/null || sudo groupadd auditteam
 
 3) sudo usermod -aG auditteam auditmanager
 
@@ -61,7 +63,7 @@ First, find your project folder path: pwd
 
 Open sysaudit.service and sysaudit-cleanup.service.
 
-Replace /home/aaron/CIS_341_Project with your own project folder path.
+Replace _Working Directory_ = "INSTER PWD HERE" with your own project folder path.
 
 For example, if your project is saved in /home/student/CIS_341_Project, the paths should look like this:
 
@@ -155,7 +157,11 @@ Delegate Access to Another User
 
 The delegate argument can be used to grant an existing Linux user access to the audit group.
 
-6) sudo -u auditmanager python3 main.py delegate=student1
+6) sudo visudo
+
+7) auditmanager ALL=(root) NOPASSWD: /usr/sbin/usermod, /usr/sbin/groupadd, /usr/bin/chgrp, /usr/bin/chmod
+
+8) sudo -u auditmanager python3 main.py delegate=student1
 
 Replace student1 with an existing username.
 
@@ -165,7 +171,7 @@ Run the Cleanup Script
 
 To manually compress and remove .audit files, run:
 
-7) sudo -u auditmanager python3 cleanup.py
+9) sudo -u auditmanager python3 cleanup.py
 
 The program creates a compressed .tar.gz archive and deletes the original .audit files after successful compression.
 
