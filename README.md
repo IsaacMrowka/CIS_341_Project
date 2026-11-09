@@ -215,6 +215,10 @@ The service should complete successfully. It may show inactive (dead) afterward 
 
 **6. View the Audit Logs**
 
+sudo tail -n 20 /course_project/audit/sysaudit_daemon.log
+
+This displays recent audit activity, including monitoring scans and archive information.
+
 **7. Automated Functionality Tests**
 
 Run automated tests using:
@@ -224,12 +228,6 @@ The tests check configuration loading, boundary values, missing configuration fi
 
 The program should display PASS messages when the tests succeed. Some ERROR messages are expected because the tests intentionally check invalid conditions.
 
-
-
-
-sudo tail -n 20 /course_project/audit/sysaudit_daemon.log
-
-This displays recent audit activity, including monitoring scans and archive information.
 
 **Additional Notes:**
 
