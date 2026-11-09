@@ -41,3 +41,13 @@ result = daemon.main()
 daemon.load_config = original
 
 print("PASS: Test C" if result == 4 else "FAIL: Test C")
+
+
+# Test D - Malformed Configuration
+config = open("sysaudit.cfg").read()
+open("bad.cfg", "w").write(config.replace("100.0", "wrong"))
+settings = daemon.load_config("bad.cfg")
+if settings is None:
+    print("PASS: Test D")
+else:
+    print("FAIL: Test D")
