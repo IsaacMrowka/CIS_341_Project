@@ -1,0 +1,18 @@
+#Bottlenecks Analysis and Solutions
+
+A bottleneck is a problem in a system that limits how much work the system can do or how fast it can operate. 
+
+1. Disk Storage
+Problem: When too many audit files are stored, the disk may become full. This can stop the program from saving new logs or creating new files.
+Solution: The program checks storage usage and gives warnings when the limit is exceeded.
+
+2. File Processing
+Problem: When there are too many audit files, the program may take longer to scan them. This can delay storage checks and cleanup tasks.
+Solution: The program schedules cleanup every three days, starting on the first day of each month. The cleanup process is designed to compress old audit files and remove the original files.
+
+3. User Permissions
+Problem: If the program does not have the correct permissions, it may fail to read files, write logs, or access the audit folder.
+Solution: Our program is configured to run as auditmanager, and it checks that only the authorized user can run it.
+
+Conclusion
+These are the possible problems our system may face. The program therefore includes features we have discussed above to help prevent them.
