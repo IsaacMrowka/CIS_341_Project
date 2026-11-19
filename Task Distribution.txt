@@ -1,6 +1,6 @@
 Aaron - parts 1,2,3
         code integration
- Akash - parts 4,5,6
+Akash - parts 4,5,6
         presentation
 Isaac - parts 7,8,9
         git and editor
